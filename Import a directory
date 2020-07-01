@@ -1,0 +1,13 @@
+/* Import a directory of files */
+
+/*imports all the files with extension TXT in to filename FILELIST*/
+
+filename filelist pipe 'dir "D:\RAW\*.txt" /b '; 
+
+data listoffiles ;
+
+   infile filelist lrecl=200 truncover;
+   input file_name $100.;
+   *outfile=cat('BB',file_name);/* Adding a char(prefix) if the textfile names start with a number */
+
+run;
